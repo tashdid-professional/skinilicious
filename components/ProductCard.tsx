@@ -38,8 +38,8 @@ export default function ProductCard({ product }: ProductCardProps) {
           {/* Image Container */}
           <div className="relative aspect-4/5 bg-[#f7f7f7] flex items-center justify-center mb-6 overflow-hidden group/image">
             {product.badge && (
-              <div className={`absolute top-4 left-4 px-3 py-1 z-10 rounded-[2px] ${
-                product.badge === "New" ? "bg-[#c24b3a]" : "bg-[#4b6c5b]"
+              <div className={`absolute top-4 left-4 px-3 z-10  rounded-2xl py-0.5 flex ${
+                product.badge === "New" ? "bg-[#CCAAF8]" : "bg-[#98CB71]"
               }`}>
                 <span className="text-white text-[14px] font-bold tracking-wider">
                   {product.badge}
@@ -109,7 +109,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               </span>
             </div>
             
-            <h3 className="text-[15px] font-semibold text-black leading-tight  transition-colors text-center">
+            <h3 className="text-[16px] font-semibold text-black leading-tight  transition-colors text-center">
               {product.name}
             </h3>
           </div>
@@ -137,9 +137,9 @@ export default function ProductCard({ product }: ProductCardProps) {
             <div className="w-full md:w-1/2 aspect-4/5 relative bg-[#fcf9f9] shrink-0">
               {product.badge && (
                 <div className={`absolute top-6 left-6 px-4 py-1.5 z-10 rounded-[2px] ${
-                  product.badge === "New" ? "bg-[#c24b3a]" : "bg-[#4b6c5b]"
+                  product.badge === "New" ? "bg-[#CCAAF8]" : "bg-[#98CB71]"
                 }`}>
-                  <span className="text-white text-[15px] font-bold tracking-widest uppercase">
+                  <span className="text-white text-[15px] font-bold tracking-widest uppercase rounded-">
                     {product.badge}
                   </span>
                 </div>

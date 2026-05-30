@@ -4,6 +4,7 @@ import { products } from "@/public/datas/products";
 import { siteConfig } from "@/public/datas/homepage";
 import ProductCard from "./ProductCard";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function FeaturedProducts() {
   const featuredProducts = products.filter((p) => p.featured).slice(0, 8);
@@ -16,15 +17,18 @@ export default function FeaturedProducts() {
       transition={{ duration: 1.2, ease: "easeOut" }}
       className="py-20 md:py-28 bg-white container mx-auto px-4"
     >
-      <div className="text-center">
+      <div>
         {/* Section Header */}
-        <div className="mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-[40px] font-semibold text-black mb-4">
+        <div className="mb-12 md:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4  ">
+          <h2 className="text-3xl md:text-[48px] font-semibold text-black leading-none">
             {siteConfig.featuredProducts.title}
           </h2>
-          <p className="text-[#7e7e7e] text-sm md:text-[18px] font-medium">
+          <Link 
+            href="/shop"
+            className="uppercase text-sm md:text-[15px] font-bold border-b border-black pb-1 hover:opacity-70 transition-opacity w-fit"
+          >
             {siteConfig.featuredProducts.subtitle}
-          </p>
+          </Link>
         </div>
 
         {/* Products Grid */}
