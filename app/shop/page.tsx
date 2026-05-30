@@ -121,7 +121,7 @@ function ShopContent() {
             </p>
             <Link 
               href="/shop" 
-              className="text-[12px] font-bold uppercase tracking-widest text-[#4b6c5b] hover:opacity-70 transition-opacity"
+              className="text-[12px] font-bold uppercase tracking-widest text-black border-b border-black hover:opacity-70 transition-opacity"
             >
               Clear Search
             </Link>
@@ -317,7 +317,7 @@ function ShopContent() {
                 <button
                   onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
                   disabled={currentPage === 1}
-                  className="w-11 h-11 border border-neutral-200 flex items-center justify-center text-neutral-400 hover:bg-[#4b6c5b] hover:text-white hover:border-[#4b6c5b] transition-all duration-300 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-neutral-400 disabled:hover:border-neutral-200"
+                  className="w-11 h-11 border border-neutral-200 flex items-center justify-center text-neutral-400 hover:bg-[#98CB71] hover:text-white hover:border-[#98CB71] transition-all duration-300 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-neutral-400 disabled:hover:border-neutral-200"
                 >
                   <ChevronLeft size={18} />
                 </button>
@@ -328,8 +328,8 @@ function ShopContent() {
                     onClick={() => handlePageChange(i + 1)}
                     className={`w-11 h-11 border text-[13px] font-bold transition-all duration-300 ${
                       currentPage === i + 1 
-                      ? "bg-[#4b6c5b] border-[#4b6c5b] text-white" 
-                      : "border-neutral-200 text-neutral-600 hover:bg-[#4b6c5b] hover:border-[#4b6c5b] hover:text-white"
+                      ? "bg-black border-black text-white" 
+                      : "border-neutral-200 text-neutral-600 hover:bg-[#98CB71] hover:border-[#98CB71] hover:text-white"
                     }`}
                   >
                     {i + 1}
@@ -339,7 +339,7 @@ function ShopContent() {
                 <button
                   onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
                   disabled={currentPage === totalPages}
-                  className="w-11 h-11 border border-neutral-200 flex items-center justify-center text-neutral-400 hover:bg-[#4b6c5b] hover:text-white hover:border-[#4b6c5b] transition-all duration-300 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-neutral-400 disabled:hover:border-neutral-200"
+                  className="w-11 h-11 border border-neutral-200 flex items-center justify-center text-neutral-400 hover:bg-[#98CB71] hover:text-white hover:border-[#98CB71] transition-all duration-300 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-neutral-400 disabled:hover:border-neutral-200"
                 >
                   <ChevronRight size={18} />
                 </button>
