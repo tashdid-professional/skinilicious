@@ -3,10 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { siteConfig } from "@/public/datas/homepage";
+import { promotionsData } from "@/public/datas/homepage";
 
 export default function Promotions() {
-  const { promotions } = siteConfig;
+  const promotions = promotionsData;
 
   return (
     <motion.section 
@@ -16,7 +16,7 @@ export default function Promotions() {
       transition={{ duration: 1.2, ease: "easeOut" }}
       className="py-10 md:py-18 container mx-auto px-4"
     >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         {promotions.map((promo, idx) => (
           <Link 
             key={idx} 

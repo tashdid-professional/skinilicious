@@ -12,8 +12,8 @@ export default function FAQPage() {
   return (
     <main className="bg-white min-h-screen">
       {/* Header */}
-      <section className="bg-[#F8F8F8] py-24 flex flex-col items-center justify-center text-center">
-        <h1 className="text-[42px] md:text-[48px] font-medium text-black mb-4">
+      <section className="bg-[#F8F8F8] py-16 md:py-24 flex flex-col items-center justify-center text-center">
+        <h1 className="text-[32px] md:text-[48px] font-medium text-black mb-4">
           {faq.title}
         </h1>
         <div className="flex items-center gap-2 text-[12px] uppercase tracking-widest text-neutral-500">
@@ -24,7 +24,7 @@ export default function FAQPage() {
       </section>
 
       {/* Content */}
-      <section className="py-24 container mx-auto px-6 max-w-3xl">
+      <section className="py-16 md:py-24 container mx-auto px-6 max-w-3xl">
         <div className="space-y-4">
           {faq.items.map((item, idx) => (
             <div key={idx} className="border-b border-neutral-100 last:border-0">

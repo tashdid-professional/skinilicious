@@ -3,10 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { siteConfig } from "@/public/datas/homepage";
+import { ourPicksData } from "@/public/datas/homepage";
 
 export default function OurPicks() {
-  const { title, categories } = siteConfig.ourPicks;
+  const { title, categories } = ourPicksData;
 
   return (
     <motion.section 
@@ -22,7 +22,7 @@ export default function OurPicks() {
         </h2>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-12 gap-x-8">
+      <div className="grid grid-cols-2 lg:grid-cols-6 gap-y-10 md:gap-y-12 gap-x-4 md:gap-x-8">
         {categories.map((category, index) => (
           <Link 
             key={index} 

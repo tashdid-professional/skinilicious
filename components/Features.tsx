@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { siteConfig } from "@/public/datas/homepage";
+import { featuresData } from "@/public/datas/homepage";
 
 export default function Features() {
-  const { features } = siteConfig;
+  const features = featuresData;
 
   return (
     <motion.section 

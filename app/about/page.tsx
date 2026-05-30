@@ -22,8 +22,8 @@ export default function AboutPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="py-24 md:py-32 container mx-auto px-6 overflow-hidden">
-        <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-32">
+      <section className="py-16 md:py-32 container mx-auto px-6 overflow-hidden">
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
           
           {/* Image Side */}
           <div className="w-full lg:w-1/2 relative">
@@ -48,7 +48,7 @@ export default function AboutPage() {
                whileInView={{ opacity: 1, y: 0 }}
                viewport={{ once: true }}
                transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-               className="absolute -bottom-24 -right-4 md:-right-10 w-[50%] aspect-[3/4] z-20  "
+               className="absolute lg:-bottom-24 -bottom-5 -right-4 md:-right-10 w-[50%] aspect-[3/4] z-20  "
             >
               <Image 
                 src={hero.images.secondary}
@@ -67,20 +67,20 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 1 }}
             >
-              <h1 className="text-[42px] md:text-[48px] font-medium text-black leading-[1.1] mb-8 tracking-tight">
+              <h1 className="text-[32px] md:text-[48px] font-medium text-black leading-[1.1] mb-6 md:mb-8 tracking-tight">
                 {hero.title}
               </h1>
               
-              <p className="text-neutral-500 text-[16px] md:text-[18px] leading-relaxed mb-12 max-w-xl">
+              <p className="text-neutral-500 text-[15px] md:text-[18px] leading-relaxed mb-8 md:mb-12 max-w-xl">
                 {hero.description}
               </p>
 
-              <div className="h-px w-full bg-neutral-100 mb-12" />
+              <div className="h-px w-full bg-neutral-100 mb-8 md:mb-12" />
 
-              <div className="grid grid-cols-2 gap-12">
+              <div className="grid grid-cols-2 gap-8 md:gap-12">
                 {hero.stats.map((stat, idx) => (
                   <div key={idx}>
-                    <h3 className="text-[42px] md:text-[56px] font-medium text-black mb-2 tracking-tight">
+                    <h3 className="text-[36px] md:text-[56px] font-medium text-black mb-1 md:mb-2 tracking-tight">
                       {stat.value}
                     </h3>
                     <p className=" text-[14px] md:text-[16px] font-medium">
@@ -96,12 +96,12 @@ export default function AboutPage() {
       <Features />
 
       {/* Mission Section (New from screenshot) */}
-      <section className="py-24 md:py-32 bg-white overflow-hidden">
+      <section className="py-16 md:py-32 bg-white overflow-hidden">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row-reverse items-center gap-20 lg:gap-32">
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-32">
             
             {/* Image Side (Right) */}
-            <div className="w-full lg:w-1/2 relative flex justify-end">
+            <div className="w-full lg:w-1/2 relative flex justify-end mb-16 lg:mb-0">
               <motion.div 
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -123,7 +123,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
-                className="absolute top-1/2 -left-12 md:-left-20 -translate-y-1/2 w-[45%] aspect-[3/4] z-20 shadow-2xl"
+                className="absolute top-1/2 -left-4 md:-left-20 -translate-y-1/2 w-[45%] aspect-[3/4] z-20 shadow-2xl"
               >
                 <Image 
                   src={mission.images.floating}
@@ -142,7 +142,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 1 }}
               >
-                <h2 className="text-[42px] md:text-[48px] font-medium text-black leading-[1.1] mb-12 tracking-tight">
+                <h2 className="text-[32px] md:text-[48px] font-medium text-black leading-[1.1] mb-8 md:mb-12 tracking-tight">
                   {mission.title}
                 </h2>
                 

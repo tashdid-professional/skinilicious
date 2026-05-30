@@ -93,17 +93,17 @@ export default function ProductDetailsPage() {
           {/* Right: Product Info */}
           <div className="lg:col-span-5 flex flex-col justify-start sticky top-24">
 
-             <div className="flex items-center gap-4 mb-6 md:mb-4 ">
+             <div className="flex items-center gap-4 mb-4 md:mb-4 ">
               {product.oldPrice && (
                 <span className=" text-[#999] line-through text-lg md:text-xl font-semibold">
                   <span className="font-serif ">৳ </span>{product.oldPrice.toFixed(2)}
                 </span>
               )}
-              <span className=" text-black text-xl font-semibold ">
+              <span className=" text-black text-lg md:text-xl font-semibold ">
                 <span className="font-serif ">৳ </span>{product.price.toFixed(2)}
               </span>
             </div>
-            <h1 className="text-3xl md:text-[34px] font-semibold tracking-normal text-black mb-6 ">
+            <h1 className="text-2xl md:text-[34px] font-semibold tracking-normal text-black mb-6 ">
               {product.name}
             </h1>
             
@@ -161,10 +161,10 @@ export default function ProductDetailsPage() {
 
         {/* Tabs Section */}
         <div className="mt-12 md:mt-20">
-          <div className="flex flex-wrap justify-center gap-10 md:gap-16 mb-2">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16 mb-2">
             <button 
               onClick={() => setActiveTab("description")}
-              className={`text-xl md:text-[34px] font-semibold transition-all ${
+              className={`text-lg md:text-[34px] font-semibold transition-all ${
                 activeTab === 'description' 
                 ? 'text-black' 
                 : 'text-neutral-300 hover:text-black'
@@ -174,7 +174,7 @@ export default function ProductDetailsPage() {
             </button>
             <button 
               onClick={() => setActiveTab("videos")}
-              className={`text-xl md:text-[34px] font-semibold transition-all ${
+              className={`text-lg md:text-[34px] font-semibold transition-all ${
                 activeTab === 'videos' 
                 ? 'text-black' 
                 : 'text-neutral-300 hover:text-black'
@@ -215,9 +215,9 @@ export default function ProductDetailsPage() {
 
         {/* Related Products */}
         {relatedProducts.length > 0 && (
-          <div className="mt-20">
-            <h2 className="text-[40px] text-center tracking-normal  mb-6 md:mb-10  font-semibold">You May Also Like</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+          <div className="mt-16 md:mt-20">
+            <h2 className="text-[28px] md:text-[40px] text-center tracking-normal  mb-8 md:mb-10  font-semibold">You May Also Like</h2>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-8 gap-y-10 md:gap-y-12">
               {relatedProducts.map((rel) => (
                 <ProductCard key={rel.id} product={rel} />
               ))}

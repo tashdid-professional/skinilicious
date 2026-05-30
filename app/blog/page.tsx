@@ -19,12 +19,12 @@ export default function BlogListingPage() {
   return (
     <main className="bg-white min-h-screen">
       {/* Header Section */}
-      <section className="bg-[#F8F8F8] py-24  flex flex-col items-center justify-center text-center">
+      <section className="bg-[#F8F8F8] py-16 md:py-24  flex flex-col items-center justify-center text-center">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-[42px] md:text-[48px] font-medium text-black mb-6"
+          className="text-[32px] md:text-[48px] font-medium text-black mb-4 md:mb-6"
         >
           Blogs
         </motion.h1>

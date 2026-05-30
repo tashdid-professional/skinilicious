@@ -5,7 +5,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { siteConfig } from "@/public/datas/homepage";
+import { navLinks, topBannerData, siteName } from "@/public/datas/homepage";
 import { products } from "@/public/datas/products";
 
 export default function Navbar() {
@@ -80,7 +80,7 @@ export default function Navbar() {
       {/* Top Banner - Only on Homepage, Not Sticky */}
       {/* {isHome && ( */}
         <div className="bg-[#E6F2DB] text-black py-4.5 text-center text-[10px] sm:text-[18px] font-semibold uppercase">
-          {siteConfig.topBanner}
+          {topBannerData}
         </div>
       {/* )} */}
 
@@ -104,7 +104,7 @@ export default function Navbar() {
 
           {/* Left: Desktop Navigation Menu */}
           <div className="hidden md:flex flex-1 gap-8 lg:gap-12">
-            {siteConfig.navLinks.map((link) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
@@ -122,7 +122,7 @@ export default function Navbar() {
             <Link href="/" className="inline-block">
               <Image 
                 src="/images/logo.png"
-                alt={siteConfig.name}
+                alt={siteName}
                 width={180}
                 height={50}
                 className="h-8 md:h-12 w-auto object-contain"
@@ -285,7 +285,7 @@ export default function Navbar() {
                 </div>
                 
                 <nav className="grow pt-10 px-8 space-y-8">
-                  {siteConfig.navLinks.map((link, idx) => (
+                  {navLinks.map((link, idx) => (
                     <motion.div
                       key={link.name}
                       initial={{ opacity: 0, x: -10 }}

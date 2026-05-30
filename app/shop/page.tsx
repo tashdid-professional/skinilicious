@@ -89,7 +89,7 @@ function ShopContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-[42px] md:text-[48px] font-medium text-black mb-6 tracking-tight"
+            className="text-[32px] md:text-[48px] font-medium text-black mb-4 md:mb-6 tracking-tight"
           >
             Products
           </motion.h1>
@@ -293,7 +293,7 @@ function ShopContent() {
             </div>
 
             {/* Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-8 gap-y-10 md:gap-y-12">
               {currentProducts.map((product, index) => (
                 <motion.div
                   key={product.id}

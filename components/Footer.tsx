@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { siteConfig } from "@/public/datas/homepage";
+import { footerData, siteName } from "@/public/datas/homepage";
 import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
 import { HiOutlineArrowRight } from "react-icons/hi";
 
 export default function Footer() {
-  const { newsletter, sections, socials, copyright } = siteConfig.footer;
+  const { newsletter, sections, socials } = footerData;
 
   const renderSocialIcon = (iconName: string) => {
     switch (iconName) {
@@ -83,7 +83,7 @@ export default function Footer() {
             <Link href="/" className="inline-block">
               <Image 
                 src="/images/logo.png"
-                alt={siteConfig.name}
+                alt={siteName}
                 width={150}
                 height={40}
                 className="h-8 md:h-10 w-auto object-contain"

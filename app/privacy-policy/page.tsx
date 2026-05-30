@@ -9,8 +9,8 @@ export default function PrivacyPage() {
 
   return (
     <main className="bg-white min-h-screen">
-      <section className="bg-[#F8F8F8] py-24 flex flex-col items-center justify-center text-center">
-        <h1 className="text-[42px] md:text-[48px] font-medium text-black mb-4">
+      <section className="bg-[#F8F8F8] py-16 md:py-24 flex flex-col items-center justify-center text-center">
+        <h1 className="text-[32px] md:text-[48px] font-medium text-black mb-4">
           {privacy.title}
         </h1>
         <div className="flex items-center gap-2 text-[12px] uppercase tracking-widest text-neutral-500">
@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         </div>
       </section>
 
-      <section className="py-24 container mx-auto px-6 max-w-4xl">
+      <section className="py-16 md:py-24 container mx-auto px-6 max-w-4xl">
         <p className="text-neutral-400 text-[14px] mb-12 uppercase tracking-widest">
           Last Updated: {privacy.lastUpdated}
         </p>

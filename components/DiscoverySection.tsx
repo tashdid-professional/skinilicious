@@ -3,10 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { siteConfig } from "@/public/datas/homepage";
+import { discoveryData } from "@/public/datas/homepage";
 
 export default function DiscoverySection() {
-  const { title, items } = siteConfig.discovery;
+  const { title, items } = discoveryData;
 
   return (
     <motion.section 

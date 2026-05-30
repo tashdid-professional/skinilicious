@@ -4,11 +4,11 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { siteConfig } from "@/public/datas/homepage";
+import { heroSlides } from "@/public/datas/homepage";
 
 export default function HeroBanner() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const slides = siteConfig.heroSlides;
+  const slides = heroSlides;
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
