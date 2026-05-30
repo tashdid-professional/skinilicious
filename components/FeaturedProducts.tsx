@@ -15,17 +15,17 @@ export default function FeaturedProducts() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1.2, ease: "easeOut" }}
-      className="py-20 md:py-28 bg-white container mx-auto px-4"
+      className="py-18  bg-white container mx-auto px-4"
     >
       <div>
         {/* Section Header */}
         <div className="mb-12 md:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4  ">
-          <h2 className="text-3xl md:text-[48px] font-semibold text-black leading-none">
+          <h2 className="text-3xl md:text-[48px] font-medium text-black leading-none">
             {siteConfig.featuredProducts.title}
           </h2>
           <Link 
             href="/shop"
-            className="uppercase text-sm md:text-[15px] font-bold border-b border-black pb-1 hover:opacity-70 transition-opacity w-fit"
+            className="uppercase text-sm md:text-[15px] font-semibold border-b border-black pb-1 hover:opacity-70 transition-opacity w-fit"
           >
             {siteConfig.featuredProducts.subtitle}
           </Link>

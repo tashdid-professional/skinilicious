@@ -39,7 +39,7 @@ const ScrollToTop = () => {
   const dashOffset = circumference - (scrollProgress / 100) * circumference;
 
   return (
-    <div className={`fixed bottom-8 right-8 z-[999] transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
+    <div className={`fixed bottom-8 right-8 z-999 transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
       <button 
         onClick={scrollToTop}
         className="relative w-11 h-11 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.1)] flex items-center justify-center transition-all cursor-pointer group hover:bg-black"

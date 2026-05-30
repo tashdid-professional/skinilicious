@@ -18,7 +18,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-white pt-20 pb-10 border-t border-gray-100">
+    <footer className="bg-white pt-20 pb-10">
       <div className="container mx-auto px-4">
         {/* Top Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
@@ -36,7 +36,7 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="w-full bg-[#f5f5f5] border-none rounded-[4px] py-4 px-6 text-[#7e7e7e] focus:ring-1 focus:ring-black outline-none transition-all"
+                className="w-full bg-[#f5f5f5] border-none rounded-sm py-4 px-6 text-[#7e7e7e] focus:ring-1 focus:ring-black outline-none transition-all"
               />
               <button className="absolute right-4 top-1/2 -translate-y-1/2 text-black hover:translate-x-1 transition-transform">
                 <HiOutlineArrowRight size={24} />

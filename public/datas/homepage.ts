@@ -1,6 +1,24 @@
 export const siteConfig = {
   name: "Skinilicious",
   topBanner: "Extra sale 30% off on all products! Limited time offer.",
+  heroSlides: [
+    {
+      subtitle: "Essential Items",
+      title: "Get the skin you want to feel",
+      description: "Made using clean, non-toxic ingredients, our products are designed for everyone.",
+      buttonText: "SHOP THIS LOOK",
+      image: "https://picsum.photos/1000/1000?random=100",
+      bgColor: "#f8f3ef"
+    },
+    {
+      subtitle: "New Arrivals",
+      title: "Discover Your Natural Radiance",
+      description: "Organic solutions for a healthier, more vibrant and glowing complexion.",
+      buttonText: "EXPLORE NOW",
+      image: "https://picsum.photos/1000/1000?random=101",
+      bgColor: "#f3f6f8"
+    }
+  ],
   navLinks: [
     { name: "Home", href: "/" },
     { name: "Shop", href: "/shop" },
@@ -35,6 +53,54 @@ export const siteConfig = {
       }
     ]
   },
+  ourPicks: {
+    title: "Our Picks for You",
+    categories: [
+      { name: "Moisturizers", count: 12, image: "https://picsum.photos/400/400?random=30" },
+      { name: "Toners", count: 8, image: "https://picsum.photos/400/400?random=31" },
+      { name: "Masks", count: 11, image: "https://picsum.photos/400/400?random=32" },
+      { name: "Kits", count: 13, image: "https://picsum.photos/400/400?random=33" },
+      { name: "Serum", count: 12, image: "https://picsum.photos/400/400?random=34" },
+      { name: "Oil Cleansers", count: 10, image: "https://picsum.photos/400/400?random=35" }
+    ]
+  },
+  promotions: [
+    {
+      badge: "CUSTOMER FAVORITE",
+      image: "https://picsum.photos/800/800?random=40",
+      href: "/shop",
+      bgColor: "#d9e4d1"
+    },
+    {
+      badge: "SALE 20% OFF",
+      image: "https://picsum.photos/800/800?random=41",
+      href: "/shop",
+      bgColor: "#ead9f2"
+    },
+    {
+      badge: "BUY 1 GET 1",
+      image: "https://picsum.photos/800/800?random=42",
+      href: "/shop",
+      bgColor: "#f2ebd9"
+    }
+  ],
+  features: [
+    {
+      title: "Guaranteed PURE",
+      description: "All Grace formulations adhere to strict purity standards and will never contain harsh or toxic ingredients",
+      image: "https://picsum.photos/100/100?random=50"
+    },
+    {
+      title: "Completely Cruelty-Free",
+      description: "Bloom skincare products are made with safe, high-quality ingredients and never include harsh or toxic chemicals",
+      image: "https://picsum.photos/100/100?random=51"
+    },
+    {
+      title: "Ingredient Sourcing",
+      description: "Our ingredients are carefully sourced from trusted suppliers to ensure the highest quality and purity in every product",
+      image: "https://picsum.photos/100/100?random=52"
+    }
+  ],
   footer: {
     newsletter: {
       title: "Care for Your Skin, Care for Your Beauty",
@@ -57,8 +123,8 @@ export const siteConfig = {
           { name: "Start A Return", href: "/returns" },
           { name: "Contact Us", href: "/contact" },
           { name: "Shipping FAQ", href: "/faq" },
-          { name: "Terms & Conditions", href: "/terms" },
-          { name: "Privacy Policy", href: "/privacy" }
+          { name: "Terms & Conditions", href: "/terms-and-conditions" },
+          { name: "Privacy Policy", href: "/privacy-policy" }
         ]
       }
     ],

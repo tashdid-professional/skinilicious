@@ -1,18 +1,21 @@
 import FeaturedProducts from "@/components/FeaturedProducts";
 import DiscoverySection from "@/components/DiscoverySection";
+import HeroBanner from "@/components/HeroBanner";
+import OurPicks from "@/components/OurPicks";
+import Promotions from "@/components/Promotions";
+import Features from "@/components/Features";
 import Marquee from "@/components/Marquee";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Image from "next/image";
 
 export default function Home() {
   return (
-    <div>
-      <Navbar/>
+    <>
+      <HeroBanner />
+      <OurPicks />
+      <Promotions />
+      <Features />
       <FeaturedProducts/>
-      <Marquee />
       <DiscoverySection/>
-      <Footer />
-    </div>
+      <Marquee />
+    </>
   );
 }

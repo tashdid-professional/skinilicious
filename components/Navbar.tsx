@@ -12,6 +12,8 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
   const router = useRouter();
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -32,6 +34,28 @@ export default function Navbar() {
       setSearchQuery("");
     }
   };
+
+  // Handle scroll visibility
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== 'undefined') {
+        const currentScrollY = window.scrollY;
+        
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          // Scrolling down - hide navbar
+          setIsVisible(false);
+        } else {
+          // Scrolling up - show navbar
+          setIsVisible(true);
+        }
+        
+        setLastScrollY(currentScrollY);
+      }
+    };
+
+    window.addEventListener('scroll', controlNavbar);
+    return () => window.removeEventListener('scroll', controlNavbar);
+  }, [lastScrollY]);
 
   // Close menu and search when route changes
   useEffect(() => {
@@ -61,7 +85,9 @@ export default function Navbar() {
       {/* )} */}
 
       {/* Main Navbar - Sticky */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-gray-100">
+      <nav className={`sticky top-0 z-50 bg-white border-b border-gray-100 transition-transform duration-300 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      }`}>
         <div className="container mx-auto py-5 md:py-6 flex items-center justify-between">
           {/* Mobile: Hamburger Button */}
           <div className="flex md:hidden flex-1">
@@ -82,7 +108,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`text-[16px] font-medium   transition-colors relative py-0.5 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-black after:transition-transform after:duration-300 ${
+                className={`text-[16px]    transition-colors relative py-0.5 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-black after:transition-transform after:duration-300 ${
                   pathname === link.href ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100"
                 }`}
               >
@@ -132,13 +158,13 @@ export default function Navbar() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={toggleSearch}
-                className="fixed inset-0 bg-black/60 backdrop-blur-md z-[100]"
+                className="fixed inset-0 bg-black/60 backdrop-blur-md z-100"
               />
               <motion.div
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -50, opacity: 0 }}
-                className="fixed top-0 left-0 w-full bg-white z-[101] py-12 px-6 shadow-2xl max-h-screen overflow-y-auto"
+                className="fixed top-0 left-0 w-full bg-white z-101 py-12 px-6 shadow-2xl max-h-screen overflow-y-auto"
               >
                 <div className="container mx-auto">
                   <div className="flex justify-between items-start mb-8">
@@ -162,7 +188,7 @@ export default function Navbar() {
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="w-full text-2xl md:text-5xl font-medium border-none outline-none placeholder:text-neutral-200"
                     />
-                    <div className="absolute right-0 bottom-2 w-full h-[2px] bg-neutral-100 origin-left scale-x-100 transition-transform duration-700 mt-4" />
+                    <div className="absolute right-0 bottom-2 w-full h-0.5 bg-neutral-100 origin-left scale-x-100 transition-transform duration-700 mt-4" />
                   </form>
 
                   {/* Suggestion / Quick Results */}
@@ -181,7 +207,7 @@ export default function Navbar() {
                             onClick={() => setIsSearchOpen(false)}
                             className="group flex flex-col gap-4"
                           >
-                            <div className="relative aspect-[4/5] overflow-hidden bg-neutral-50">
+                            <div className="relative aspect-4/5 overflow-hidden bg-neutral-50">
                               <Image 
                                 src={product.image} 
                                 alt={product.name} 
@@ -228,7 +254,7 @@ export default function Navbar() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={toggleMenu}
-                className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[60] md:hidden"
+                className="fixed inset-0 bg-black/40 backdrop-blur-sm z-60 md:hidden"
               />
 
               {/* Drawer Content */}
@@ -237,10 +263,10 @@ export default function Navbar() {
                 animate={{ x: 0 }}
                 exit={{ x: "-100%" }}
                 transition={{ type: "spring", damping: 30, stiffness: 300, mass: 0.8 }}
-                className="fixed top-0 left-0 bottom-0 w-[80%] max-w-[320px] bg-white z-[70] md:hidden shadow-2xl flex flex-col"
+                className="fixed top-0 left-0 bottom-0 w-[80%] max-w-80 bg-white z-70 md:hidden shadow-2xl flex flex-col"
               >
                 <div className="flex items-center justify-between px-6 py-6 border-b border-gray-50">
-                  <span className="text-xl font-bold tracking-[0.2em] ">Menu</span>
+                  <span className="text-xl font-bold tracking-widest ">Menu</span>
                   <button 
                     onClick={toggleMenu}
                     className="p-1 hover:bg-gray-100 rounded-full transition-colors"
@@ -251,7 +277,7 @@ export default function Navbar() {
                   </button>
                 </div>
                 
-                <nav className="flex-grow pt-10 px-8 space-y-8">
+                <nav className="grow pt-10 px-8 space-y-8">
                   {siteConfig.navLinks.map((link, idx) => (
                     <motion.div
                       key={link.name}
@@ -261,7 +287,7 @@ export default function Navbar() {
                     >
                       <Link
                         href={link.href}
-                        className={`block text-[18px] font-semibold tracking-[0.1em]  transition-colors ${
+                        className={`block text-[18px] font-semibold tracking-widest  transition-colors ${
                           pathname === link.href ? "text-black" : "text-gray-400 hover:text-black"
                         }`}
                       >

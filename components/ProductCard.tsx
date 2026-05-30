@@ -104,12 +104,12 @@ export default function ProductCard({ product }: ProductCardProps) {
                   <span className="font-serif text-sm">৳</span> {product.oldPrice.toFixed(2)}
                 </span>
               )}
-              <span className={` font-semibold ${product.oldPrice ? 'text-black' : 'text-gray-900'}`}>
+              <span className={` font-semibold ${product.oldPrice ? 'text-black' : 'text-black'}`}>
                 <span className="font-serif text-sm">৳</span> {product.price.toFixed(2)}
               </span>
             </div>
             
-            <h3 className="text-[16px] font-semibold text-black leading-tight  transition-colors text-center">
+            <h3 className="text-[16px] font-medium text-black leading-tight  transition-colors text-center">
               {product.name}
             </h3>
           </div>
@@ -136,7 +136,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
             <div className="w-full md:w-1/2 aspect-4/5 relative bg-[#fcf9f9] shrink-0">
               {product.badge && (
-                <div className={`absolute top-6 left-6 px-4 py-1.5 z-10 rounded-[2px] ${
+                <div className={`absolute top-6 left-6 px-4 py-1.5 z-10 rounded-xs ${
                   product.badge === "New" ? "bg-[#CCAAF8]" : "bg-[#98CB71]"
                 }`}>
                   <span className="text-white text-[15px] font-bold tracking-widest uppercase rounded-">

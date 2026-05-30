@@ -82,14 +82,29 @@ function ShopContent() {
 
   return (
     <main className="bg-white min-h-screen">
-      {/* Breadcrumb */}
-      <div className="bg-[#F8F8F8] py-4">
-        <div className="container flex items-center justify-center gap-2 text-[12px] uppercase tracking-[0.1em] text-neutral-500">
-          <Link href="/" className="hover:text-black transition-colors">Home</Link>
-          <span className="text-neutral-300">—</span>
-          <span className="text-black font-medium">Products</span>
+      {/* Page Header */}
+      <header className="bg-[#F8F8F8] py-24  border-b border-neutral-100">
+        <div className="container text-center">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-[42px] md:text-[48px] font-medium text-black mb-6 tracking-tight"
+          >
+            Products
+          </motion.h1>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex items-center justify-center gap-3 text-[14px] md:text-[15px] text-neutral-500"
+          >
+            <Link href="/" className="hover:text-black transition-colors">Home</Link>
+            <span className="text-neutral-300">—</span>
+            <span className="text-black font-medium">Products</span>
+          </motion.div>
         </div>
-      </div>
+      </header>
 
       {/* Main Content Area */}
       <motion.section 
@@ -136,60 +151,52 @@ function ShopContent() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   onClick={() => setIsSidebarOpen(false)}
-                  className="fixed inset-0 bg-black/40 z-[90] lg:hidden"
+                  className="fixed inset-0 bg-black/40 z-90 lg:hidden"
                 />
                 <motion.aside 
                   initial={{ x: "-100%" }}
                   animate={{ x: 0 }}
                   exit={{ x: "-100%" }}
                   transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                  className="fixed inset-y-0 left-0 w-[80%] max-w-[300px] bg-white z-[100] lg:hidden p-8 flex flex-col"
+                  className="fixed inset-y-0 left-0 w-[80%] max-w-75 bg-white z-100 lg:hidden p-8 flex flex-col pt-20"
                 >
-                  <div className="flex justify-between items-center mb-10 pb-4 border-b border-neutral-100">
-                    <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-900">
-                      Collections
+                  <div className="flex justify-between items-center mb-12">
+                    <h4 className="text-[20px] font-medium text-black tracking-tight">
+                      Categories
                     </h4>
                     <button onClick={() => setIsSidebarOpen(false)} className="p-1 hover:rotate-90 transition-transform duration-300">
-                      <X size={20} />
+                      <X size={24} strokeWidth={1.5} />
                     </button>
                   </div>
                   
-                  <ul className="space-y-2 overflow-y-auto">
+                  <ul className="space-y-6">
                     <li 
                       onClick={() => handleCategorySelect(null)}
-                      className={`flex items-center justify-between px-4 py-3.5 cursor-pointer rounded-sm transition-all ${
-                        selectedCategory === null ? "bg-[#f8f8f8]" : "active:bg-neutral-50"
-                      }`}
+                      className="cursor-pointer group"
                     >
-                      <span className={`text-[13px] tracking-wide ${selectedCategory === null ? "text-black font-bold" : "text-neutral-600 font-medium"}`}>
-                        All Collections
-                      </span>
-                      <span className={`text-[10px] px-2 py-0.5 rounded-full border ${
-                        selectedCategory === null 
-                        ? "bg-black border-black text-white" 
-                        : "border-neutral-200 text-neutral-400"
-                      }`}>
-                        {products.length}
-                      </span>
+                      <div className="flex items-start">
+                        <span className={`text-[17px] ${selectedCategory === null ? "text-black font-semibold border-b border-black" : "text-neutral-500 font-medium group-hover:text-black transition-colors"}`}>
+                          All Collections
+                        </span>
+                        <sup className={`ml-1 text-[11px] ${selectedCategory === null ? "text-black" : "text-neutral-400 group-hover:text-black"} font-bold`}>
+                          {products.length}
+                        </sup>
+                      </div>
                     </li>
                     {categories.map((cat) => (
                       <li 
                         key={cat.name} 
                         onClick={() => handleCategorySelect(cat.name)}
-                        className={`flex items-center justify-between px-4 py-3.5 cursor-pointer rounded-sm transition-all ${
-                          selectedCategory === cat.name ? "bg-[#f8f8f8]" : "active:bg-neutral-50"
-                        }`}
+                        className="cursor-pointer group"
                       >
-                        <span className={`text-[13px] tracking-wide ${selectedCategory === cat.name ? "text-black font-bold" : "text-neutral-600 font-medium"}`}>
-                          {cat.name}
-                        </span>
-                        <span className={`text-[10px] px-2 py-0.5 rounded-full border ${
-                          selectedCategory === cat.name 
-                          ? "bg-black border-black text-white" 
-                          : "border-neutral-200 text-neutral-400"
-                        }`}>
-                          {cat.count}
-                        </span>
+                        <div className="flex items-start">
+                          <span className={`text-[17px] ${selectedCategory === cat.name ? "text-black font-semibold border-b border-black" : "text-neutral-500 font-medium group-hover:text-black transition-colors"}`}>
+                            {cat.name}
+                          </span>
+                          <sup className={`ml-1 text-[11px] ${selectedCategory === cat.name ? "text-black" : "text-neutral-400 group-hover:text-black"} font-bold`}>
+                            {cat.count}
+                          </sup>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -200,52 +207,47 @@ function ShopContent() {
           </AnimatePresence>
 
           {/* Sidebar - Desktop Only */}
-          <aside className="hidden lg:block lg:w-1/4 space-y-12">
+          <aside className="hidden lg:block lg:w-1/4 space-y-12 pr-12">
             <div className="sticky top-32">
-              <h4 className="text-[17px] font-bold uppercase tracking-[0.2em] mb-8 text-neutral-900 flex items-center gap-2">
-                <span className="w-8 h-[1px] bg-black"></span>
-                Filter By Category
+              <h4 className="text-[20px] font-medium text-black mb-10 tracking-tight">
+                Product Categories
               </h4>
-              <ul className="space-y-1">
+              <ul className="space-y-6">
                 <li 
                   onClick={() => handleCategorySelect(null)}
-                  className={`flex items-center justify-between px-4 py-3 cursor-pointer rounded-sm transition-all duration-300 group ${
-                    selectedCategory === null 
-                    ? "bg-[#f8f8f8] translate-x-1" 
-                    : "hover:bg-[#fafafa] hover:translate-x-1"
-                  }`}
+                  className="cursor-pointer group flex items-start w-fit"
                 >
-                  <span className={`text-[13px] tracking-wide transition-colors ${selectedCategory === null ? "text-black font-bold" : "text-neutral-500 group-hover:text-black font-medium"}`}>
+                  <span className={`text-[17px] transition-all duration-300 ${
+                    selectedCategory === null 
+                    ? "text-black font-semibold border-b border-black" 
+                    : "text-neutral-400 group-hover:text-black font-medium"
+                  }`}>
                     All Collections
                   </span>
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full border transition-all ${
-                    selectedCategory === null 
-                    ? "bg-black border-black text-white" 
-                    : "bg-transparent border-neutral-200 text-neutral-400 group-hover:border-black group-hover:text-black"
+                  <sup className={`ml-1 text-[11px] font-bold ${
+                    selectedCategory === null ? "text-black" : "text-neutral-300 group-hover:text-black"
                   }`}>
                     {products.length}
-                  </span>
+                  </sup>
                 </li>
                 {categories.map((cat) => (
                   <li 
                     key={cat.name} 
                     onClick={() => handleCategorySelect(cat.name)}
-                    className={`flex items-center justify-between px-4 py-3 cursor-pointer rounded-sm transition-all duration-300 group ${
-                      selectedCategory === cat.name 
-                      ? "bg-[#f8f8f8] translate-x-1" 
-                      : "hover:bg-[#fafafa] hover:translate-x-1"
-                    }`}
+                    className="cursor-pointer group flex items-start w-fit"
                   >
-                    <span className={`text-[13px] tracking-wide transition-colors ${selectedCategory === cat.name ? "text-black font-bold" : "text-neutral-500 group-hover:text-black font-medium"}`}>
+                    <span className={`text-[17px] transition-all duration-300 ${
+                      selectedCategory === cat.name 
+                      ? "text-black font-semibold border-b border-black" 
+                      : "text-neutral-400 group-hover:text-black font-medium"
+                    }`}>
                       {cat.name}
                     </span>
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full border transition-all ${
-                      selectedCategory === cat.name 
-                      ? "bg-black border-black text-white" 
-                      : "bg-transparent border-neutral-200 text-neutral-400 group-hover:border-black group-hover:text-black"
+                    <sup className={`ml-1 text-[11px] font-bold ${
+                      selectedCategory === cat.name ? "text-black" : "text-neutral-300 group-hover:text-black"
                     }`}>
                       {cat.count}
-                    </span>
+                    </sup>
                   </li>
                 ))}
               </ul>
@@ -256,19 +258,23 @@ function ShopContent() {
           {/* Product Grid Area */}
           <div className="w-full lg:w-3/4">
             
+
             {/* Filter Bar */}
-            <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
-              <div className="flex items-center">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6 pb-6 border-b border-neutral-100">
+              <div className="flex items-center gap-6">
                 <button 
                   onClick={() => setViewType("grid")}
                   className={`border border-neutral-200 p-2.5 transition-colors ${viewType === "grid" ? "bg-[#f8f8f8] text-black" : "text-neutral-400 hover:text-black"}`}
                 >
                   <LayoutGrid size={18} />
                 </button>
-               
+                
+                <p className="text-neutral-500 text-[14px] md:text-[16px]">
+                  We found <span className="text-black font-semibold">{filteredProducts.length}</span> products available for you.
+                </p>
               </div>
 
-              <div className="relative w-full md:w-auto min-w-[220px]">
+              <div className="relative w-full md:w-auto min-w-55">
                 <select 
                   value={sortOrder}
                   onChange={(e) => {

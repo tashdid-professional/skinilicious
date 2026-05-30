@@ -30,7 +30,7 @@ const Marquee = () => {
         {[...marqueeItems, ...marqueeItems].map((text, index) => (
           <span
             key={index}
-            className={`px-8 text-[14px] md:text-[18px] font-black tracking-[0.1em] uppercase ${
+            className={`px-8 text-[14px] md:text-[18px] font-black tracking-widest uppercase ${
               text.startsWith("@") ? "text-[#b297e6]" : "text-[#b297e6]"
             }`}
           >
