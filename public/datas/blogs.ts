@@ -16,7 +16,7 @@ export const blogs: Blog[] = [
     id: 1,
     slug: "tips-procedure-to-apply-luxury-beauty-cosmetic-cream",
     category: "MAKE UP",
-    author: "Hiếu Bùi",
+    author: "Habibur Rahman",
     date: "FEB 20, 2025",
     title: "Tips & Procedure To Apply Luxury Beauty Cosmetic Cream",
     excerpt: "Complexion-perfecting natural foundation enriched with antioxidant-packed superfruits, vitamins, and other skin-nourishing nutrients...",

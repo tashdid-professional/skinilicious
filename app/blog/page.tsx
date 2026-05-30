@@ -16,30 +16,15 @@ export default function BlogListingPage() {
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
   const currentBlogs = blogs.slice(startIndex, startIndex + POSTS_PER_PAGE);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
   return (
     <main className="bg-white min-h-screen">
       {/* Header Section */}
-      <section className="bg-[#F8F8F8] py-24 md:py-32 flex flex-col items-center justify-center text-center">
+      <section className="bg-[#F8F8F8] py-24  flex flex-col items-center justify-center text-center">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-[48px] md:text-[64px] font-medium text-black mb-6"
+          className="text-[42px] md:text-[48px] font-medium text-black mb-6"
         >
           Blogs
         </motion.h1>
@@ -57,38 +42,43 @@ export default function BlogListingPage() {
 
       {/* Blogs Grid */}
       <section className="py-24 container mx-auto px-6">
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16"
-        >
-          {currentBlogs.map((blog: Blog) => (
-            <motion.div key={blog.id} variants={itemVariants} className="group">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+          {currentBlogs.map((blog: Blog, index: number) => (
+            <motion.div 
+              key={blog.id} 
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ 
+                duration: 1.2, 
+                ease: "easeOut",
+                delay: (index % 3) * 0.1 
+              }}
+              className="group"
+            >
               <Link href={`/blog/${blog.slug}`} className="block">
-                <div className="relative aspect-[3/2] overflow-hidden mb-6">
+                <div className="relative aspect-16/9 overflow-hidden mb-6">
                   <Image 
                     src={blog.image}
                     alt={blog.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="object-cover transition-transform duration-700 hover:scale-110"
                   />
                 </div>
                 
-                <div className="flex items-center gap-2 text-[12px] uppercase tracking-widest text-neutral-400 mb-3 font-medium">
+                <div className="flex items-center gap-2 text-[15px] uppercase tracking-widest text-neutral-400 mb-3 ">
                   <span>{blog.category}</span>
                   <span className="text-neutral-300">|</span>
                   <span>{blog.date}</span>
                 </div>
 
-                <h2 className="text-[20px] font-medium text-black leading-tight group-hover:text-neutral-600 transition-colors">
+                <h2 className="text-[24px] font-medium text-black leading-tight group-hover:text-neutral-600 transition-colors">
                   {blog.title}
                 </h2>
               </Link>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Pagination */}
         {totalPages > 1 && (

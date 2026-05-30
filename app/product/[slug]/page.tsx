@@ -15,18 +15,7 @@ export default function ProductDetailsPage() {
   const product = products.find((p) => p.slug === slug);
   const [activeTab, setActiveTab] = useState("description");
   const [selectedVariant, setSelectedVariant] = useState(product?.variants?.[0] || null);
-  const [mainImage, setMainImage] = useState(product?.image || "");
 
-  // Update image when product or variant changes
-  React.useEffect(() => {
-    if (product) {
-      if (selectedVariant) {
-        setMainImage(selectedVariant.image);
-      } else {
-        setMainImage(product.image);
-      }
-    }
-  }, [product, selectedVariant]);
 
   if (!product) {
     return (
@@ -43,7 +32,16 @@ export default function ProductDetailsPage() {
   }
 
   const relatedProducts = products
-    .filter((p) => p.category === product.category && p.id !== product.id)
+    .filter((p) => p.id !== product.id)
+    // Attempt to get variety by taking the first product seen from each category
+    .reduce((acc: typeof products, curr) => {
+      const hasCategory = acc.some(p => p.category === curr.category);
+      if (acc.length < 4 && !hasCategory) acc.push(curr);
+      return acc;
+    }, [])
+    // If we have fewer than 4 (e.g. only 2 categories exist), fill with any other products
+    .concat(products.filter(p => p.id !== product.id))
+    .filter((p, i, self) => self.findIndex(t => t.id === p.id) === i)
     .slice(0, 4);
 
   const activeGallery = selectedVariant ? selectedVariant.gallery : product.gallery;
@@ -61,43 +59,39 @@ export default function ProductDetailsPage() {
         </div>
       </div>
 
-      <div className="container pb-16 md:pb-20 pt-10 lg:px-32" >
+      <div className="container pb-16 md:pb-20 pt-10 lg:px-12" >
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           
-          {/* Left: Image Gallery */}
-          <div className="flex flex-col gap-6">
-            {/* Main Image */}
-            <div className="relative aspect-[3/4] w-full max-w-[450px] mx-auto md:mx-0 bg-[#f9e2bf] overflow-hidden">
-              {product.badge && (
-                <div className={`absolute top-4 left-4 px-4 py-1.5 z-20 rounded-[2px] ${
-                  product.badge === "New" ? "bg-[#c24b3a]" : "bg-[#4b6c5b]"
-                }`}>
-                  <span className="text-white text-[15px] font-bold tracking-widest uppercase">
-                    {product.badge}
-                  </span>
-                </div>
-              )}
-              
-              <Image src={mainImage} alt={product.name} fill className="object-cover" priority />
-            </div>
-
-            {/* Thumbnails */}
-            <div className="flex gap-3 overflow-x-auto pb-2">
-              {activeGallery.map((img, idx) => (
-                <div 
-                  key={idx}
-                  className={`relative w-16 h-20 md:w-26 md:h-32 flex-shrink-0 cursor-pointer border transition-all ${mainImage === img ? 'border-black' : 'border-transparent'}`}
-                  onClick={() => setMainImage(img)}
-                >
-                  <Image src={img} alt={`Gallery ${idx}`} fill className="object-cover" />
-                </div>
-              ))}
-            </div>
+          {/* Left: Image Gallery (2 per row) */}
+          <div className="lg:col-span-7 grid grid-cols-2 gap-4 content-start">
+            {activeGallery.map((img, idx) => (
+              <div 
+                key={idx}
+                className="relative aspect-[4/5] w-full bg-[#f9e2bf] overflow-hidden"
+              >
+                {idx === 0 && product.badge && (
+                  <div className={`absolute top-4 left-4 px-4 py-1.5 z-20 rounded-[2px] ${
+                    product.badge === "New" ? "bg-[#c24b3a]" : "bg-[#4b6c5b]"
+                  }`}>
+                    <span className="text-white text-[12px] md:text-[15px] font-bold tracking-widest uppercase">
+                      {product.badge}
+                    </span>
+                  </div>
+                )}
+                <Image 
+                  src={img} 
+                  alt={`${product.name} ${idx + 1}`} 
+                  fill 
+                  className="object-cover" 
+                  priority={idx < 2} 
+                />
+              </div>
+            ))}
           </div>
 
           {/* Right: Product Info */}
-          <div className="flex flex-col justify-start max-w-lg">
+          <div className="lg:col-span-5 flex flex-col justify-start sticky top-24">
 
              <div className="flex items-center gap-4 mb-6 md:mb-4 ">
               {product.oldPrice && (
@@ -147,7 +141,7 @@ export default function ProductDetailsPage() {
                 href={product.purchaseLink || "#"} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-full px-12 bg-black border border-black text-white h-14 flex items-center justify-center text-[11px] md:text-base tracking-[0.08em] e hover:bg-[#4b6c5b]  hover:border-[#4b6c5b] hover:border hover:text-white transition-all duration-500"
+                className="w-full px-12 rounded-4xl bg-[#F7F0B5] border font-bold uppercase border-[#F7F0B5]  h-14 flex items-center justify-center text-[14px] md:text-[18px] tracking-[0.08em] e hover:bg-[#98CB71]  hover:border-[#98CB71] hover:border hover:text-white transition-all duration-500"
               >
                 Buy it now
               </a>

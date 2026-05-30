@@ -79,7 +79,7 @@ export default function Navbar() {
     <>
       {/* Top Banner - Only on Homepage, Not Sticky */}
       {/* {isHome && ( */}
-        <div className="bg-[#E6F2DB] text-black py-4 text-center text-[10px] sm:text-[18px] font-semibold uppercase">
+        <div className="bg-[#E6F2DB] text-black py-4.5 text-center text-[10px] sm:text-[18px] font-semibold uppercase">
           {siteConfig.topBanner}
         </div>
       {/* )} */}
@@ -119,8 +119,15 @@ export default function Navbar() {
 
           {/* Center: Logo */}
           <div className="flex-1 md:flex-none text-center">
-            <Link href="/" className="text-2xl md:text-[42px] font-semibold  inline-block">
-              {siteConfig.name}
+            <Link href="/" className="inline-block">
+              <Image 
+                src="/images/logo.png"
+                alt={siteConfig.name}
+                width={180}
+                height={50}
+                className="h-8 md:h-12 w-auto object-contain"
+                priority
+              />
             </Link>
           </div>
 

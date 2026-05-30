@@ -48,7 +48,7 @@ export default function AboutPage() {
                whileInView={{ opacity: 1, y: 0 }}
                viewport={{ once: true }}
                transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-               className="absolute -bottom-12 -right-4 md:right-0 w-[50%] aspect-[3/4] z-20 border-[12px] border-white shadow-2xl"
+               className="absolute -bottom-24 -right-4 md:-right-10 w-[50%] aspect-[3/4] z-20  "
             >
               <Image 
                 src={hero.images.secondary}
@@ -67,7 +67,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 1 }}
             >
-              <h1 className="text-[42px] md:text-[64px] font-medium text-black leading-[1.1] mb-8 tracking-tight">
+              <h1 className="text-[42px] md:text-[48px] font-medium text-black leading-[1.1] mb-8 tracking-tight">
                 {hero.title}
               </h1>
               
@@ -83,7 +83,7 @@ export default function AboutPage() {
                     <h3 className="text-[42px] md:text-[56px] font-medium text-black mb-2 tracking-tight">
                       {stat.value}
                     </h3>
-                    <p className="text-neutral-500 text-[14px] md:text-[16px] font-medium">
+                    <p className=" text-[14px] md:text-[16px] font-medium">
                       {stat.label}
                     </p>
                   </div>
@@ -142,26 +142,13 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 1 }}
               >
-                <h2 className="text-[42px] md:text-[56px] font-medium text-black leading-[1.1] mb-12 tracking-tight">
+                <h2 className="text-[42px] md:text-[48px] font-medium text-black leading-[1.1] mb-12 tracking-tight">
                   {mission.title}
                 </h2>
                 
-                <p className="text-neutral-500 text-[15px] md:text-[16px] leading-relaxed mb-10 max-w-xl">
-                  {mission.intro}
+                <p className="text-neutral-500 text-[15px] md:text-[18px] leading-relaxed max-w-xl whitespace-pre-line">
+                  {mission.description}
                 </p>
-
-                <div className="space-y-10">
-                  {mission.sections.map((section, idx) => (
-                    <div key={idx} className="max-w-xl">
-                      <p className="text-neutral-500 text-[15px] md:text-[16px] leading-relaxed mb-2">
-                        {section.content}
-                      </p>
-                      <p className="text-black font-bold text-[18px]">
-                        {section.highlight}
-                      </p>
-                    </div>
-                  ))}
-                </div>
               </motion.div>
             </div>
 

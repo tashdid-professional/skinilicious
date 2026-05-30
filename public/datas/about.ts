@@ -13,17 +13,7 @@ export const aboutData = {
   },
   mission: {
     title: "Let's Introduce Skin with The Shine",
-    intro: "Complexion-perfecting natural foundation enriched with antioxidant-packed superfruits, vitamins, and other skin-nourishing nutrients. Creamy liquid formula sets with a pristine matte finish for soft, velvety smooth skin.",
-    sections: [
-      {
-        content: "Complexion-perfecting natural foundation enriched with antioxidant-packed superfruits, vitamins, and other skin-nourishing nutrients.",
-        highlight: "Our misstion."
-      },
-      {
-        content: "Complexion-perfecting natural foundation enriched with antioxidant-packed superfruits, vitamins, and other skin-nourishing nutrients.",
-        highlight: "Producing the highest quality products."
-      }
-    ],
+    description: "Complexion-perfecting natural foundation enriched with antioxidant-packed superfruits, vitamins, and other skin-nourishing nutrients. Creamy liquid formula sets with a pristine matte finish for soft, velvety smooth skin. \n\nOur mission is to provide complexion-perfecting natural foundation enriched with antioxidant-packed superfruits, vitamins, and other skin-nourishing nutrients while producing the highest quality products for our customers.",
     images: {
       main: "https://picsum.photos/seed/about3/800/1000",
       floating: "https://picsum.photos/seed/about4/600/800"

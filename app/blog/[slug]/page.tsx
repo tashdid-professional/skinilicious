@@ -35,23 +35,23 @@ export default function BlogDetailsPage() {
         <div className="container mx-auto px-6 flex items-center justify-center gap-2 text-[12px] uppercase tracking-widest text-neutral-500 overflow-hidden text-ellipsis whitespace-nowrap">
           <Link href="/" className="hover:text-black transition-colors shrink-0">Home</Link>
           <span className="text-neutral-300">—</span>
-          <Link href="/blog" className="hover:text-black transition-colors shrink-0">News</Link>
+          <Link href="/blog" className="hover:text-black transition-colors shrink-0">Blogs</Link>
           <span className="text-neutral-300">—</span>
           <span className="text-black font-medium truncate">{blog.title}</span>
         </div>
       </div>
 
       {/* Blog Hero Section */}
-      <section className="pt-20 pb-16 container mx-auto px-6 max-w-5xl text-center">
+      <section className="pt-20 pb-16 container mx-auto px-6 max-w-6xl text-center">
         <motion.div
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.8 }}
         >
-          <span className="text-[12px] uppercase tracking-[0.2em] text-neutral-400 font-bold mb-6 block font-satoshi">
+          <span className="text-[15px] uppercase tracking-[0.1em] text-neutral-400 font-bold mb-6 block font-satoshi">
             {blog.category}
           </span>
-          <h1 className="text-[40px] md:text-[60px] font-medium text-black leading-[1.1] mb-8 tracking-tight max-w-4xl mx-auto font-satoshi">
+          <h1 className="text-[40px] md:text-[48px] font-medium text-black leading-[1.1] mb-8 tracking-tight max-w-6xl mx-auto font-satoshi">
             {blog.title}
           </h1>
           <div className="flex items-center justify-center gap-2 text-[15px] text-neutral-500 font-satoshi">
@@ -80,17 +80,12 @@ export default function BlogDetailsPage() {
       </section>
 
       {/* Content Section */}
-      <section className="container mx-auto px-6 max-w-3xl mb-32">
-        <div className="prose prose-neutral prose-lg max-w-none">
-          <p className="text-neutral-600 text-[18px] leading-[1.8] font-satoshi mb-8">
+      <section className="container mx-auto px-6 max-w-6xl mb-32">
+        <div className="prose prose-neutral prose-lg max-w-none text-justify">
+          <p className="text-[#7e7e7e] text-[16px] md:text-[18px] leading-[1.8] font-satoshi mb-8">
             {blog.description}
           </p>
-          <p className="text-neutral-600 text-[18px] leading-[1.8] font-satoshi">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ac scelerisque lorem. 
-            Maecenas vel magna sodales, molestie magna id, tempus est. Duis interdum massa nisl, 
-            quis sollicitudin orci sodales non. Curabitur sed lectus finibus, varius dui in, 
-            efficitur nisl. Quisque id urna in ex tristique pretium.
-          </p>
+          
         </div>
       </section>
 
@@ -104,7 +99,7 @@ export default function BlogDetailsPage() {
                  <span className="text-[12px] uppercase tracking-widest text-neutral-400 font-bold">Previous</span>
                  <Link href={`/blog/${prevBlog.slug}`} className="group flex items-center gap-4 text-black text-left">
                     <span className="text-2xl transition-transform group-hover:-translate-x-2 shrink-0">←</span>
-                    <span className="text-[18px] font-medium hover:text-neutral-600 transition-colors line-clamp-2">
+                    <span className="text-[14px] font-medium hover:text-neutral-600 transition-colors line-clamp-2">
                       {prevBlog.title}
                     </span>
                  </Link>
@@ -116,7 +111,7 @@ export default function BlogDetailsPage() {
                <div className="flex flex-col items-end gap-4 flex-1 text-right">
                  <span className="text-[12px] uppercase tracking-widest text-neutral-400 font-bold">Next</span>
                  <Link href={`/blog/${nextBlog.slug}`} className="group flex items-center gap-4 text-black text-right justify-end">
-                    <span className="text-[18px] font-medium hover:text-neutral-600 transition-colors line-clamp-2">
+                    <span className="text-[14px] font-medium hover:text-neutral-600 transition-colors line-clamp-2">
                       {nextBlog.title}
                     </span>
                     <span className="text-2xl transition-transform group-hover:translate-x-2 shrink-0">→</span>
@@ -138,7 +133,7 @@ export default function BlogDetailsPage() {
             {relatedPosts.map((post) => (
               <div key={post.id} className="group">
                 <Link href={`/blog/${post.slug}`} className="block">
-                  <div className="relative aspect-[3/2] overflow-hidden mb-6">
+                  <div className="relative aspect-[16/9] overflow-hidden mb-6">
                     <Image 
                       src={post.image}
                       alt={post.title}
@@ -159,11 +154,7 @@ export default function BlogDetailsPage() {
             ))}
           </div>
 
-          {/* Carousel dots indicator from design */}
-          <div className="mt-16 flex justify-center gap-2">
-            <div className="w-2 h-2 rounded-full border border-black transition-colors" />
-            <div className="w-2 h-2 rounded-full bg-black" />
-          </div>
+         
         </div>
       </section>
     </main>

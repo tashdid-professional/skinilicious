@@ -11,12 +11,12 @@ export default function ContactPage() {
   return (
     <main className="bg-white min-h-screen">
       {/* Header Section */}
-      <section className="bg-[#F8F8F8] py-24 md:py-32 flex flex-col items-center justify-center text-center">
+      <section className="bg-[#F8F8F8] py-24  flex flex-col items-center justify-center text-center">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-[48px] md:text-[64px] font-medium text-black mb-6"
+          className="text-[42px] md:text-[48px] font-medium text-black mb-6"
         >
           {header.title}
         </motion.h1>
@@ -33,7 +33,7 @@ export default function ContactPage() {
       </section>
 
       {/* Main Content Section */}
-      <section className="py-24 md:py-32 container mx-auto px-6">
+      <section className="max-w-6xl py-24 md:py-32 container mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-20 lg:gap-32">
           
           {/* Form Side */}
@@ -82,35 +82,30 @@ export default function ContactPage() {
             
             {/* Address Section */}
             <div>
-              <h3 className="text-[18px] font-bold text-black mb-6">Address</h3>
+              <h3 className="text-[20px] font-medium text-black mb-6">Address</h3>
               <div className="space-y-6">
                 {info.addresses.map((addr, idx) => (
-                  <p key={idx} className="text-neutral-500 text-[15px] leading-relaxed">
+                  <p key={idx} className="text-[#7e7e7e] text-[15px] leading-relaxed">
                     {addr.line1}<br />
                     {addr.line2}
                   </p>
                 ))}
               </div>
-              <Link 
-                href="#" 
-                className="inline-block mt-8 text-[12px] font-bold uppercase tracking-widest border-b-2 border-black pb-1 hover:text-neutral-600 hover:border-neutral-600 transition-all"
-              >
-                Get Direction
-              </Link>
+              
             </div>
 
             {/* Contact Section */}
             <div>
-              <h3 className="text-[18px] font-bold text-black mb-6">Contact</h3>
+              <h3 className="text-[20px] font-medium text-black mb-6">Contact</h3>
               <div className="space-y-3">
                 <p className="text-[15px]">
-                  <span className="text-neutral-400">Mobile:</span> <span className="text-black font-medium">{info.contact.mobile}</span>
+                  <span className="text-[#7e7e7e]">Mobile:</span> <span className="text-black font-medium">{info.contact.mobile}</span>
                 </p>
                 <p className="text-[15px]">
-                  <span className="text-neutral-400">Hotline:</span> <span className="text-black font-medium">{info.contact.hotline}</span>
+                  <span className="text-[#7e7e7e]">Hotline:</span> <span className="text-black font-medium">{info.contact.hotline}</span>
                 </p>
                 <p className="text-[15px]">
-                  <span className="text-neutral-400">E-mail:</span> <span className="text-black font-medium">{info.contact.email}</span>
+                  <span className="text-[#7e7e7e]">E-mail:</span> <span className="text-black font-medium">{info.contact.email}</span>
                 </p>
               </div>
             </div>

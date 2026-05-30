@@ -9,8 +9,8 @@ export default function TermsPage() {
 
   return (
     <main className="bg-white min-h-screen">
-      <section className="bg-[#F8F8F8] py-20 flex flex-col items-center justify-center text-center">
-        <h1 className="text-[42px] md:text-[56px] font-medium text-black mb-4">
+      <section className="bg-[#F8F8F8] py-24 flex flex-col items-center justify-center text-center">
+        <h1 className="text-[42px] md:text-[48px] font-medium text-black mb-4">
           {terms.title}
         </h1>
         <div className="flex items-center gap-2 text-[12px] uppercase tracking-widest text-neutral-500">

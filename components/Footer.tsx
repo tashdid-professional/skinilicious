@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { siteConfig } from "@/public/datas/homepage";
 import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
 import { HiOutlineArrowRight } from "react-icons/hi";
@@ -78,8 +79,16 @@ export default function Footer() {
           </div>
 
           {/* Logo */}
-          <div className="text-black text-[32px] font-serif font-medium order-1 md:order-2">
-            Skinilicious
+          <div className="order-1 md:order-2">
+            <Link href="/" className="inline-block">
+              <Image 
+                src="/images/logo.png"
+                alt={siteConfig.name}
+                width={150}
+                height={40}
+                className="h-8 md:h-10 w-auto object-contain"
+              />
+            </Link>
           </div>
 
           {/* Social Icons */}
