@@ -120,14 +120,7 @@ export default function Navbar() {
           {/* Center: Logo */}
           <div className="flex-1 md:flex-none text-center">
             <Link href="/" className="inline-block">
-              <Image 
-                src="/images/logo.png"
-                alt={siteName}
-                width={180}
-                height={50}
-                className="h-8 md:h-12 w-auto object-contain"
-                priority
-              />
+              <h1 className="text-4xl font-bold text-black font-voyage">Skinilicious</h1>
             </Link>
           </div>
 

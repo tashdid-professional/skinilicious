@@ -41,6 +41,17 @@ const satoshi = localFont({
   variable: "--font-satoshi",
 });
 
+const voyage = localFont({
+  src: [
+    {
+      path: "../public/fonts/voyage.regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-voyage",
+});
+
 export const metadata: Metadata = {
   title: "Skinilicious",
   description: "",
@@ -54,7 +65,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${satoshi.variable} h-full antialiased font-sans`}
+      className={`${satoshi.variable} ${voyage.variable} h-full antialiased font-sans`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <Navbar />

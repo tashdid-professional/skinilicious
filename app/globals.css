@@ -2,7 +2,8 @@
 
 @theme {
   --font-sans: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-   --spacing-container: 1.5rem; 
+  --font-voyage: var(--font-voyage), serif;
+  --spacing-container: 1.5rem; 
 }
 
 body {

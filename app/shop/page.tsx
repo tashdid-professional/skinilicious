@@ -128,21 +128,8 @@ function ShopContent() {
           </div>
         )}        
 
-        <div className=" mx-auto flex flex-col lg:flex-row gap-12 relative lg:static">
+        <div className=" mx-auto flex flex-col gap-12 relative">
           
-          {/* Mobile Sticky Toggle Button */}
-          <div className="lg:hidden fixed left-0 top-1/2 -translate-y-1/2 z-40">
-            <button 
-              onClick={() => setIsSidebarOpen(true)}
-              className="bg-black text-white py-6 px-2.5 rounded-r-lg shadow-2xl flex flex-col items-center gap-3 active:scale-95 transition-all group"
-            >
-              <List size={18} className="group-hover:scale-110 transition-transform" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] transform rotate-180 [writing-mode:vertical-lr]">
-                Categories
-              </span>
-            </button>
-          </div>
-
           <AnimatePresence>
             {isSidebarOpen && (
               <>
@@ -151,149 +138,137 @@ function ShopContent() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   onClick={() => setIsSidebarOpen(false)}
-                  className="fixed inset-0 bg-black/40 z-90 lg:hidden"
+                  className="fixed inset-0 bg-black/40 z-[100]"
                 />
                 <motion.aside 
                   initial={{ x: "-100%" }}
                   animate={{ x: 0 }}
                   exit={{ x: "-100%" }}
-                  transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                  className="fixed inset-y-0 left-0 w-[80%] max-w-75 bg-white z-100 lg:hidden p-8 flex flex-col pt-20"
+                  transition={{ type: "tween", duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="fixed inset-y-0 left-0 w-full max-w-[400px] bg-white z-[101] p-10 flex flex-col shadow-2xl"
                 >
-                  <div className="flex justify-between items-center mb-12">
-                    <h4 className="text-[20px] font-medium text-black tracking-tight">
-                      Categories
+                  <div className="flex justify-between items-center mb-16">
+                    <h4 className="text-[24px] font-medium text-black tracking-tight">
+                      Product Categories
                     </h4>
-                    <button onClick={() => setIsSidebarOpen(false)} className="p-1 hover:rotate-90 transition-transform duration-300">
-                      <X size={24} strokeWidth={1.5} />
+                    <button 
+                      onClick={() => setIsSidebarOpen(false)} 
+                      className="group p-2 -mr-2 flex items-center gap-2 text-neutral-400 hover:text-black transition-colors"
+                    >
+                      <span className="text-[11px] font-bold uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity">Close</span>
+                      <X size={24} strokeWidth={1.5} className="group-hover:rotate-90 transition-transform duration-500" />
                     </button>
                   </div>
                   
-                  <ul className="space-y-6">
-                    <li 
-                      onClick={() => handleCategorySelect(null)}
-                      className="cursor-pointer group"
-                    >
-                      <div className="flex items-start">
-                        <span className={`text-[17px] ${selectedCategory === null ? "text-black font-semibold border-b border-black" : "text-neutral-500 font-medium group-hover:text-black transition-colors"}`}>
+                  <nav>
+                    <ul className="space-y-8">
+                      <li 
+                        onClick={() => handleCategorySelect(null)}
+                        className="cursor-pointer group flex items-start justify-between border-b border-neutral-100 pb-4"
+                      >
+                        <span className={`text-[18px] transition-all duration-300 ${
+                          selectedCategory === null 
+                          ? "text-black font-semibold translate-x-2" 
+                          : "text-neutral-500 group-hover:text-black group-hover:translate-x-2 font-medium"
+                        }`}>
                           All Collections
                         </span>
-                        <sup className={`ml-1 text-[11px] ${selectedCategory === null ? "text-black" : "text-neutral-400 group-hover:text-black"} font-bold`}>
-                          {products.length}
-                        </sup>
-                      </div>
-                    </li>
-                    {categories.map((cat) => (
-                      <li 
-                        key={cat.name} 
-                        onClick={() => handleCategorySelect(cat.name)}
-                        className="cursor-pointer group"
-                      >
-                        <div className="flex items-start">
-                          <span className={`text-[17px] ${selectedCategory === cat.name ? "text-black font-semibold border-b border-black" : "text-neutral-500 font-medium group-hover:text-black transition-colors"}`}>
+                        <span className={`text-[12px] font-bold ${
+                          selectedCategory === null ? "text-black" : "text-neutral-300 group-hover:text-black"
+                        }`}>
+                          ({products.length})
+                        </span>
+                      </li>
+                      {categories.map((cat) => (
+                        <li 
+                          key={cat.name} 
+                          onClick={() => handleCategorySelect(cat.name)}
+                          className="cursor-pointer group flex items-start justify-between border-b border-neutral-100 pb-4"
+                        >
+                          <span className={`text-[18px] transition-all duration-300 ${
+                            selectedCategory === cat.name 
+                            ? "text-black font-semibold translate-x-2" 
+                            : "text-neutral-400 group-hover:text-black group-hover:translate-x-2 font-medium"
+                          }`}>
                             {cat.name}
                           </span>
-                          <sup className={`ml-1 text-[11px] ${selectedCategory === cat.name ? "text-black" : "text-neutral-400 group-hover:text-black"} font-bold`}>
-                            {cat.count}
-                          </sup>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
+                          <span className={`text-[12px] font-bold ${
+                            selectedCategory === cat.name ? "text-black" : "text-neutral-200 group-hover:text-black"
+                          }`}>
+                            ({cat.count})
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
 
+                  <div className="mt-auto pt-10">
+                    <p className="text-[12px] text-neutral-400 font-medium uppercase tracking-[0.2em] mb-4">Need help?</p>
+                    <Link href="/contact" className="text-[15px] text-black font-medium border-b border-black hover:pb-1 transition-all">
+                      Contact Support
+                    </Link>
+                  </div>
                 </motion.aside>
               </>
             )}
           </AnimatePresence>
 
-          {/* Sidebar - Desktop Only */}
-          <aside className="hidden lg:block lg:w-1/4 space-y-12 pr-12">
-            <div className="sticky top-32">
-              <h4 className="text-[20px] font-medium text-black mb-10 tracking-tight">
-                Product Categories
-              </h4>
-              <ul className="space-y-6">
-                <li 
-                  onClick={() => handleCategorySelect(null)}
-                  className="cursor-pointer group flex items-start w-fit"
-                >
-                  <span className={`text-[17px] transition-all duration-300 ${
-                    selectedCategory === null 
-                    ? "text-black font-semibold border-b border-black" 
-                    : "text-neutral-400 group-hover:text-black font-medium"
-                  }`}>
-                    All Collections
-                  </span>
-                  <sup className={`ml-1 text-[11px] font-bold ${
-                    selectedCategory === null ? "text-black" : "text-neutral-300 group-hover:text-black"
-                  }`}>
-                    {products.length}
-                  </sup>
-                </li>
-                {categories.map((cat) => (
-                  <li 
-                    key={cat.name} 
-                    onClick={() => handleCategorySelect(cat.name)}
-                    className="cursor-pointer group flex items-start w-fit"
-                  >
-                    <span className={`text-[17px] transition-all duration-300 ${
-                      selectedCategory === cat.name 
-                      ? "text-black font-semibold border-b border-black" 
-                      : "text-neutral-400 group-hover:text-black font-medium"
-                    }`}>
-                      {cat.name}
-                    </span>
-                    <sup className={`ml-1 text-[11px] font-bold ${
-                      selectedCategory === cat.name ? "text-black" : "text-neutral-300 group-hover:text-black"
-                    }`}>
-                      {cat.count}
-                    </sup>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </aside>
-
-
           {/* Product Grid Area */}
-          <div className="w-full lg:w-3/4">
+          <div className="w-full">
             
 
             {/* Filter Bar */}
-            <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6 pb-6 border-b border-neutral-100">
-              <div className="flex items-center gap-6">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6 pb-8 border-b border-neutral-100">
+              <div className="flex items-center gap-4 md:gap-8 w-full md:w-auto">
                 <button 
-                  onClick={() => setViewType("grid")}
-                  className={`border border-neutral-200 p-2.5 transition-colors ${viewType === "grid" ? "bg-[#f8f8f8] text-black" : "text-neutral-400 hover:text-black"}`}
+                  onClick={() => setIsSidebarOpen(true)}
+                  className="bg-[#F7F0B5] hover:bg-[#98CB71] text-black px-6 py-4 flex items-center gap-3 transition-colors duration-300"
                 >
-                  <LayoutGrid size={18} />
+                  <div className="flex flex-col gap-1 w-4">
+                    <div className="h-0.5 w-full bg-black"></div>
+                    <div className="h-0.5 w-2/3 bg-black"></div>
+                    <div className="h-0.5 w-full bg-black"></div>
+                  </div>
+                  <span className="text-[13px] font-bold uppercase tracking-widest">Filter</span>
                 </button>
                 
-                <p className="text-neutral-500 text-[14px] md:text-[16px]">
-                  We found <span className="text-black font-semibold">{filteredProducts.length}</span> products available for you.
+                <p className="text-neutral-500 text-[14px] md:text-[20px]">
+                  We found <span className="text-black font-medium">{filteredProducts.length}</span> products available for you.
                 </p>
               </div>
 
-              <div className="relative w-full md:w-auto min-w-55">
-                <select 
-                  value={sortOrder}
-                  onChange={(e) => {
-                    setSortOrder(e.target.value);
-                    setCurrentPage(1);
-                  }}
-                  className="w-full bg-[#f3f2f2] appearance-none   px-5 py-2.5 text-[15px] outline-none focus:border-black transition-colors  pr-10  cursor-pointer"
-                >
-                  <option value="a-z">Alphabetically, A-Z</option>
-                  <option value="z-a">Alphabetically, Z-A</option>
-                  <option value="low-high">Price, low to high</option>
-                  <option value="high-low">Price, high to low</option>
-                </select>
-                <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 pointer-events-none" />
+              <div className="flex items-center justify-between md:justify-end gap-6 w-full md:w-auto pt-4 md:pt-0 border-t border-neutral-50 md:border-none">
+                <div className="flex items-center gap-2">
+                  <button 
+                    onClick={() => setViewType("grid")}
+                    className={`p-1.5 transition-colors ${viewType === "grid" ? "text-black" : "text-neutral-300 hover:text-black"}`}
+                  >
+                    <LayoutGrid size={22} strokeWidth={1.5} />
+                  </button>
+                  
+                </div>
+
+                <div className="relative min-w-48 lg:min-w-56">
+                  <select 
+                    value={sortOrder}
+                    onChange={(e) => {
+                      setSortOrder(e.target.value);
+                      setCurrentPage(1);
+                    }}
+                    className="w-full bg-[#F6F6F6] appearance-none px-6 py-3.5 text-[16px] outline-none transition-colors pr-12 cursor-pointer text-neutral-800"
+                  >
+                    <option value="a-z">Alphabetically, A-Z</option>
+                    <option value="z-a">Alphabetically, Z-A</option>
+                    <option value="low-high">Price, low to high</option>
+                    <option value="high-low">Price, high to low</option>
+                  </select>
+                  <ChevronDown size={14} className="absolute right-5 top-1/2 -translate-y-1/2 text-neutral-400 pointer-events-none" />
+                </div>
               </div>
             </div>
 
             {/* Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-8 gap-y-10 md:gap-y-12">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 md:gap-x-8 gap-y-10 md:gap-y-12">
               {currentProducts.map((product, index) => (
                 <motion.div
                   key={product.id}

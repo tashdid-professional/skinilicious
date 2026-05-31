@@ -70,16 +70,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="pt-10 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="pt-10 border-t border-gray-100 grid grid-cols-1 md:grid-cols-3 items-center gap-8">
           {/* Copyright */}
-          <div className="text-[#7e7e7e] text-sm order-3 md:order-1">
+          <div className="text-[#7e7e7e] text-sm order-3 md:order-1 text-center md:text-left">
             © Skinilicious 2026 | Powered by <a href="https://thebigdogdigital.com" target="_blank" className="hover:text-black font-bold transition-colors">
               BigDog Digital
             </a>
           </div>
 
           {/* Logo */}
-          <div className="order-1 md:order-2">
+          <div className="order-1 md:order-2 flex justify-center">
             <Link href="/" className="inline-block">
               <Image 
                 src="/images/logo.png"
@@ -92,7 +92,7 @@ export default function Footer() {
           </div>
 
           {/* Social Icons */}
-          <div className="flex items-center gap-6 order-2 md:order-3">
+          <div className="flex items-center justify-center md:justify-end gap-6 order-2 md:order-3">
             {socials.map((social, idx) => (
               <a
                 key={idx}
