@@ -8,6 +8,7 @@ import Link from "next/link";
 
 export default function FAQPage() {
   const [data, setData] = useState<LegalData | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   useEffect(() => {
     getLegalData().then(setData);
@@ -22,7 +23,6 @@ export default function FAQPage() {
   }
 
   const { faq } = data;
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <main className="bg-white min-h-screen">
