@@ -50,9 +50,18 @@ export default function HeroBanner() {
                 src={slides[currentIndex].image}
                 alt={slides[currentIndex].title}
                 fill
-                className="object-cover"
+                className="object-cover hidden md:block"
                 priority
               />
+              {slides[currentIndex].mobileImage && (
+                <Image
+                  src={slides[currentIndex].mobileImage}
+                  alt={slides[currentIndex].title}
+                  fill
+                  className="object-cover block md:hidden"
+                  priority
+                />
+              )}
             </motion.div>
           </div>
 

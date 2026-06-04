@@ -50,6 +50,7 @@ export interface HeroSlide {
   description: string;
   buttonText: string;
   image: string;
+  mobileImage?: string;
   bgColor: string;
 }
 

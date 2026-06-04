@@ -17,6 +17,9 @@ export const legalData = {
       {
         question: "Do you offer international shipping?",
         answer: "Currently, we ship to over 50 countries worldwide. Shipping costs and delivery times vary by location."
+      },{
+        question: "How can I contact customer support?",
+        answer: "You can reach our customer support team via email at support@skinilicious.com or through our website's contact form."
       }
     ]
   },

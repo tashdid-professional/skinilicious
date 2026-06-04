@@ -55,6 +55,8 @@ const voyage = localFont({
 export const metadata: Metadata = {
   title: "Skinilicious",
   description: "",
+  icons
+    : "/images/favicon.png",
 };
 
 export default function RootLayout({

@@ -10,6 +10,7 @@ export const heroSlides = [
       "Made using clean, non-toxic ingredients, our products are designed for everyone.",
     buttonText: "SHOP THIS LOOK",
     image: "https://picsum.photos/1000/1000?random=100",
+    mobileImage: "https://picsum.photos/600/800?random=200",
     bgColor: "#f8f3ef",
   },
   {
@@ -19,6 +20,7 @@ export const heroSlides = [
       "Organic solutions for a healthier, more vibrant and glowing complexion.",
     buttonText: "EXPLORE NOW",
     image: "https://picsum.photos/1000/1000?random=101",
+    mobileImage: "https://picsum.photos/600/800?random=201",
     bgColor: "#f3f6f8",
   },
 ];
