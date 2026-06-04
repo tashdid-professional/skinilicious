@@ -1,18 +1,24 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { blogs, Blog } from "@/public/datas/blogs";
+import { getBlogs } from "@/src/services/api";
+import type { Blog } from "@/src/types";
 
 const POSTS_PER_PAGE = 6;
 
 export default function BlogListingPage() {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
+  useEffect(() => {
+    getBlogs().then(setBlogs);
+  }, []);
+
   // Pagination Logic
-  const totalPages = Math.ceil(blogs.length / POSTS_PER_PAGE);
+  const totalPages = Math.ceil(blogs.length / POSTS_PER_PAGE) || 1;
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
   const currentBlogs = blogs.slice(startIndex, startIndex + POSTS_PER_PAGE);
 
@@ -43,6 +49,11 @@ export default function BlogListingPage() {
       {/* Blogs Grid */}
       <section className="py-24 container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+          {currentBlogs.length === 0 && (
+            <div className="col-span-full text-center py-20">
+              <p className="text-neutral-400 text-sm tracking-widest uppercase animate-pulse">Loading...</p>
+            </div>
+          )}
           {currentBlogs.map((blog: Blog, index: number) => (
             <motion.div 
               key={blog.id} 

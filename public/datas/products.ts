@@ -1,27 +1,4 @@
-export interface ProductVariant {
-  name: string;
-  image: string;
-  gallery: string[];
-}
-
-export interface Product {
-  id: number;
-  name: string;
-  category: string;
-  price: number;
-  oldPrice?: number;
-  image: string;
-  badge?: "Sale" | "New";
-  description: string;
-  slug: string;
-  tags: string[];
-  gallery: string[];
-  videos: string[]; // YouTube video IDs
-  purchaseLink?: string;
-  variantType?: string; // e.g., "Colors", "Flavors", "Sizes"
-  variants?: ProductVariant[];
-  featured: boolean;
-}
+import type { Product, ProductVariant } from "@/src/types";
 
 export const products: Product[] = [
   {

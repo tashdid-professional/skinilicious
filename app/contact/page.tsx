@@ -1,12 +1,27 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { contactData } from "@/public/datas/contact";
+import { getContactData } from "@/src/services/api";
+import type { ContactData } from "@/src/types";
 
 export default function ContactPage() {
-  const { header, info } = contactData;
+  const [data, setData] = useState<ContactData | null>(null);
+
+  useEffect(() => {
+    getContactData().then(setData);
+  }, []);
+
+  if (!data) {
+    return (
+      <main className="min-h-screen bg-white flex items-center justify-center">
+        <p className="text-neutral-400 text-sm tracking-widest uppercase animate-pulse">Loading...</p>
+      </main>
+    );
+  }
+
+  const { header, info } = data;
 
   return (
     <main className="bg-white min-h-screen">

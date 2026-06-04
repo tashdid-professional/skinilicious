@@ -1,11 +1,19 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { featuresData } from "@/public/datas/homepage";
+import { getFeaturesData } from "@/src/services/api";
+import type { Feature } from "@/src/types";
 
 export default function Features() {
-  const features = featuresData;
+  const [features, setFeatures] = useState<Feature[]>([]);
+
+  useEffect(() => {
+    getFeaturesData().then(setFeatures);
+  }, []);
+
+  if (features.length === 0) return null;
 
   return (
     <motion.section 

@@ -1,14 +1,29 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { aboutData } from "@/public/datas/about";
+import { getAboutData } from "@/src/services/api";
+import type { AboutData } from "@/src/types";
 import Features from "@/components/Features";
 
 export default function AboutPage() {
-  const { hero, mission } = aboutData;
+  const [data, setData] = useState<AboutData | null>(null);
+
+  useEffect(() => {
+    getAboutData().then(setData);
+  }, []);
+
+  if (!data) {
+    return (
+      <main className="min-h-screen bg-white flex items-center justify-center">
+        <p className="text-neutral-400 text-sm tracking-widest uppercase animate-pulse">Loading...</p>
+      </main>
+    );
+  }
+
+  const { hero, mission } = data;
 
   return (
     <main className="bg-white min-h-screen">

@@ -1,11 +1,26 @@
 "use client";
 
-import React from "react";
-import { legalData } from "@/public/datas/legal";
+import React, { useState, useEffect } from "react";
+import { getLegalData } from "@/src/services/api";
+import type { LegalData } from "@/src/types";
 import Link from "next/link";
 
 export default function TermsPage() {
-  const { terms } = legalData;
+  const [data, setData] = useState<LegalData | null>(null);
+
+  useEffect(() => {
+    getLegalData().then(setData);
+  }, []);
+
+  if (!data) {
+    return (
+      <main className="min-h-screen bg-white flex items-center justify-center">
+        <p className="text-neutral-400 text-sm tracking-widest uppercase animate-pulse">Loading...</p>
+      </main>
+    );
+  }
+
+  const { terms } = data;
 
   return (
     <main className="bg-white min-h-screen">

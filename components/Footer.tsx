@@ -1,13 +1,27 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { footerData, siteName } from "@/public/datas/homepage";
+import { getFooterData, getSiteName } from "@/src/services/api";
+import type { FooterData } from "@/src/types";
 import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
 import { HiOutlineArrowRight } from "react-icons/hi";
 
 export default function Footer() {
-  const { newsletter, sections, socials } = footerData;
+  const [footer, setFooter] = useState<FooterData | null>(null);
+  const [siteName, setSiteName] = useState("");
+
+  useEffect(() => {
+    Promise.all([getFooterData(), getSiteName()]).then(([f, name]) => {
+      setFooter(f);
+      setSiteName(name);
+    });
+  }, []);
+
+  if (!footer) return null;
+
+  const { newsletter, sections, socials } = footer;
 
   const renderSocialIcon = (iconName: string) => {
     switch (iconName) {

@@ -1,12 +1,20 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { promotionsData } from "@/public/datas/homepage";
+import { getPromotionsData } from "@/src/services/api";
+import type { Promotion } from "@/src/types";
 
 export default function Promotions() {
-  const promotions = promotionsData;
+  const [promotions, setPromotions] = useState<Promotion[]>([]);
+
+  useEffect(() => {
+    getPromotionsData().then(setPromotions);
+  }, []);
+
+  if (promotions.length === 0) return null;
 
   return (
     <motion.section 

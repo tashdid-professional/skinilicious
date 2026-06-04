@@ -5,10 +5,14 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { navLinks, topBannerData, siteName } from "@/public/datas/homepage";
-import { products } from "@/public/datas/products";
+import { getNavLinks, getTopBannerData, getSiteName, getProducts } from "@/src/services/api";
+import type { NavLink, Product } from "@/src/types";
 
 export default function Navbar() {
+  const [navLinks, setNavLinksState] = useState<NavLink[]>([]);
+  const [topBanner, setTopBanner] = useState("");
+  const [siteName, setSiteName] = useState("");
+  const [products, setProducts] = useState<Product[]>([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -17,6 +21,17 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    Promise.all([getNavLinks(), getTopBannerData(), getSiteName(), getProducts()]).then(
+      ([links, banner, name, prods]) => {
+        setNavLinksState(links);
+        setTopBanner(banner);
+        setSiteName(name);
+        setProducts(prods);
+      }
+    );
+  }, []);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleSearch = () => {
@@ -80,10 +95,11 @@ export default function Navbar() {
       {/* Top Banner - Only on Homepage, Not Sticky */}
       {/* {isHome && ( */}
         <div className="bg-[#E6F2DB] text-black py-4.5 text-center text-[10px] sm:text-[18px] font-semibold uppercase">
-          {topBannerData}
+          {topBanner}
         </div>
       {/* )} */}
 
+      {navLinks.length === 0 && <div className="h-[73px]" />}
       {/* Main Navbar - Sticky */}
       <nav className={`sticky top-0 z-50 bg-white border-b border-gray-100 transition-transform duration-300 ${
         isVisible ? "translate-y-0" : "-translate-y-full"

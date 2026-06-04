@@ -4,20 +4,28 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { heroSlides } from "@/public/datas/homepage";
+import { getHeroSlides } from "@/src/services/api";
+import type { HeroSlide } from "@/src/types";
 
 export default function HeroBanner() {
+  const [slides, setSlides] = useState<HeroSlide[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const slides = heroSlides;
+
+  useEffect(() => {
+    getHeroSlides().then(setSlides);
+  }, []);
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
   }, [slides.length]);
 
   useEffect(() => {
+    if (slides.length === 0) return;
     const timer = setInterval(nextSlide, 5000);
     return () => clearInterval(timer);
-  }, [nextSlide]);
+  }, [nextSlide, slides.length]);
+
+  if (slides.length === 0) return null;
 
   return (
     <section className="relative h-162.5 md:h-175 w-full overflow-hidden bg-white">

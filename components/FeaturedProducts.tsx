@@ -1,12 +1,25 @@
 "use client";
 
-import { products } from "@/public/datas/products";
-import { featuredProductsData } from "@/public/datas/homepage";
+import { useState, useEffect } from "react";
+import { getProducts, getFeaturedProductsMeta } from "@/src/services/api";
+import type { Product } from "@/src/types";
 import ProductCard from "./ProductCard";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function FeaturedProducts() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [meta, setMeta] = useState<{ title: string; subtitle: string } | null>(null);
+
+  useEffect(() => {
+    Promise.all([getProducts(), getFeaturedProductsMeta()]).then(([prods, m]) => {
+      setProducts(prods);
+      setMeta(m);
+    });
+  }, []);
+
+  if (!meta) return null;
+
   const featuredProducts = products.filter((p) => p.featured).slice(0, 8);
 
   return (
@@ -21,13 +34,13 @@ export default function FeaturedProducts() {
         {/* Section Header */}
         <div className="mb-12 md:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4  ">
           <h2 className="text-3xl md:text-[48px] font-medium text-black leading-none">
-            {featuredProductsData.title}
+            {meta.title}
           </h2>
           <Link 
             href="/shop"
             className="uppercase hidden lg:flex text-sm md:text-[15px] font-semibold border-b border-black pb-1 hover:opacity-70 transition-opacity w-fit"
           >
-            {featuredProductsData.subtitle}
+            {meta.subtitle}
           </Link>
         </div>
 

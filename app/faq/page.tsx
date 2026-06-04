@@ -1,12 +1,27 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { legalData } from "@/public/datas/legal";
+import { getLegalData } from "@/src/services/api";
+import type { LegalData } from "@/src/types";
 import Link from "next/link";
 
 export default function FAQPage() {
-  const { faq } = legalData;
+  const [data, setData] = useState<LegalData | null>(null);
+
+  useEffect(() => {
+    getLegalData().then(setData);
+  }, []);
+
+  if (!data) {
+    return (
+      <main className="min-h-screen bg-white flex items-center justify-center">
+        <p className="text-neutral-400 text-sm tracking-widest uppercase animate-pulse">Loading...</p>
+      </main>
+    );
+  }
+
+  const { faq } = data;
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (

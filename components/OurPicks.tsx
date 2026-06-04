@@ -1,12 +1,22 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ourPicksData } from "@/public/datas/homepage";
+import { getOurPicksData } from "@/src/services/api";
+import type { OurPicksData } from "@/src/types";
 
 export default function OurPicks() {
-  const { title, categories } = ourPicksData;
+  const [data, setData] = useState<OurPicksData | null>(null);
+
+  useEffect(() => {
+    getOurPicksData().then(setData);
+  }, []);
+
+  if (!data) return null;
+
+  const { title, categories } = data;
 
   return (
     <motion.section 

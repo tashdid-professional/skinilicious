@@ -1,12 +1,22 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { discoveryData } from "@/public/datas/homepage";
+import { getDiscoveryData } from "@/src/services/api";
+import type { DiscoveryData } from "@/src/types";
 
 export default function DiscoverySection() {
-  const { title, items } = discoveryData;
+  const [data, setData] = useState<DiscoveryData | null>(null);
+
+  useEffect(() => {
+    getDiscoveryData().then(setData);
+  }, []);
+
+  if (!data) return null;
+
+  const { title, items } = data;
 
   return (
     <motion.section 

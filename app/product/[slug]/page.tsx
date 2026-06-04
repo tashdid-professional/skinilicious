@@ -1,20 +1,44 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
-import { products } from "@/public/datas/products";
+import { getProducts } from "@/src/services/api";
+import type { Product, ProductVariant } from "@/src/types";
 
 
 export default function ProductDetailsPage() {
   const { slug } = useParams();
-  const product = products.find((p) => p.slug === slug);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const [activeTab, setActiveTab] = useState("description");
-  const [selectedVariant, setSelectedVariant] = useState(product?.variants?.[0] || null);
+  const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(null);
+
+  useEffect(() => {
+    getProducts().then((prods) => {
+      setProducts(prods);
+      setLoading(false);
+    });
+  }, []);
+
+  const product = products.find((p) => p.slug === slug);
+
+  useEffect(() => {
+    if (product?.variants?.length) {
+      setSelectedVariant(product.variants[0]);
+    }
+  }, [product]);
+
+  if (loading) {
+    return (
+      <main className="min-h-screen bg-white flex items-center justify-center">
+        <p className="text-neutral-400 text-sm tracking-widest uppercase animate-pulse">Loading...</p>
+      </main>
+    );
+  }
 
 
   if (!product) {

@@ -1,17 +1,23 @@
 ﻿"use client";
 
-import React, { useState, Suspense } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight, LayoutGrid, List, ChevronDown, Plus, ChevronLeft, X } from "lucide-react";
-import { products } from "@/public/datas/products";
+import { getProducts } from "@/src/services/api";
+import type { Product } from "@/src/types";
 import ProductCard from "@/components/ProductCard";
 
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 function ShopContent() {
+  const [products, setProducts] = useState<Product[]>([]);
   const searchParams = useSearchParams();
+
+  useEffect(() => {
+    getProducts().then(setProducts);
+  }, []);
   const searchBarQuery = searchParams.get("search") || "";
   const categoryParam = searchParams.get("category");
   
@@ -29,14 +35,16 @@ function ShopContent() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const productsPerPage = 9; // 3 rows * 3 columns on desktop
   // Filter products by search and category
-  const filteredProducts = products.filter(p => {
+  const filteredProducts = products.length > 0
+    ? products.filter(p => {
     const matchesCategory = selectedCategory ? p.category === selectedCategory : true;
     const matchesSearch = searchBarQuery 
       ? p.name.toLowerCase().includes(searchBarQuery.toLowerCase()) || 
         p.category.toLowerCase().includes(searchBarQuery.toLowerCase())
       : true;
     return matchesCategory && matchesSearch;
-  });
+  })
+  : [];
 
   // Apply Sorting
   const sortedProducts = [...filteredProducts].sort((a, b) => {
@@ -73,10 +81,12 @@ function ShopContent() {
   };
   
   // Extract unique categories and their counts
-  const categories = Array.from(new Set(products.map(p => p.category))).map(cat => ({
+  const categories = products.length > 0
+    ? Array.from(new Set(products.map(p => p.category))).map(cat => ({
     name: cat,
     count: products.filter(p => p.category === cat).length
-  }));
+  }))
+  : [];
 
   const bannerCategories = ["Face", "Hair Styling", "Lips", "Skincare"];
 

@@ -1,15 +1,34 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { blogs, Blog } from "@/public/datas/blogs";
+import { getBlogs } from "@/src/services/api";
+import type { Blog } from "@/src/types";
 
 export default function BlogDetailsPage() {
   const { slug } = useParams();
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getBlogs().then((data) => {
+      setBlogs(data);
+      setLoading(false);
+    });
+  }, []);
+
   const blog = blogs.find((b) => b.slug === slug);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-neutral-400 text-sm tracking-widest uppercase animate-pulse">Loading...</p>
+      </div>
+    );
+  }
 
   if (!blog) {
     return (
