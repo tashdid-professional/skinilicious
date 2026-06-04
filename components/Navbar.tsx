@@ -106,7 +106,7 @@ export default function Navbar() {
       }`}>
         <div className="container mx-auto py-5 md:py-6 flex items-center justify-between">
           {/* Mobile: Hamburger Button */}
-          <div className="flex md:hidden flex-1">
+          <div className="flex lg:hidden flex-1">
             <button 
               onClick={toggleMenu}
               aria-label="Toggle Menu"
@@ -119,7 +119,7 @@ export default function Navbar() {
           </div>
 
           {/* Left: Desktop Navigation Menu */}
-          <div className="hidden md:flex flex-1 gap-8 lg:gap-12">
+          <div className="hidden lg:flex flex-1 gap-8 lg:gap-12">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -272,7 +272,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={toggleMenu}
-              className="fixed inset-0 bg-black/60 backdrop-blur-md z-[100] md:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-md z-[100] lg:hidden"
             />
 
             {/* Drawer Content */}
@@ -281,7 +281,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300, mass: 0.8 }}
-              className="fixed top-0 left-0 bottom-0 w-[80%] max-w-80 bg-white z-[101] md:hidden shadow-2xl flex flex-col"
+              className="fixed top-0 left-0 bottom-0 w-[80%] max-w-80 bg-white z-[101] lg:hidden shadow-2xl flex flex-col"
             >
               <div className="flex items-center justify-between px-6 py-6 border-b border-gray-50">
                 <Link href="/" onClick={toggleMenu} className="inline-block">
