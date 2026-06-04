@@ -40,7 +40,7 @@ export default function Promotions() {
             <div className="absolute inset-0 flex items-end justify-center pb-10">
               <Link 
                 href={promo.href}
-                className="bg-white hover:bg-[#98CB71] hover:text-white text-black px-8 py-3.5 rounded-full font-semibold tracking-wider shadow-lg transition-all duration-300"
+                className="bg-white hover:bg-[#98CB71] hover:text-white text-black px-8 py-3.5 rounded-full font-semibold tracking-wider shadow-lg transition-all duration-300 sm:text-sm md:text-sm lg:text-base"
               >
                 {promo.badge}
               </Link>
